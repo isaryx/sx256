@@ -1,0 +1,16 @@
+#include "xiao_256.dtsi" // Notice that the main dtsi files are included in the overlay.
+
+&default_transform { // The matrix transform for this board is 6 columns over because the left half is 6 columns wide according to the matrix.
+    col-offset = <6>;
+};
+
+&kscan0 {
+    col-gpios
+        = <&xiao_d 5 GPIO_ACTIVE_HIGH> // col6 in the schematic
+        , <&xiao_d 4 GPIO_ACTIVE_HIGH> // col5 in the schematic
+        , <&xiao_d 3 GPIO_ACTIVE_HIGH> // col4 in the schematic
+        , <&xiao_d 2 GPIO_ACTIVE_HIGH> // col3 in the schematic
+        , <&xiao_d 1 GPIO_ACTIVE_HIGH>  // col2 in the schematic
+        , <&xiao_d 0 GPIO_ACTIVE_HIGH>  // col1 in the schematic
+        ;
+};

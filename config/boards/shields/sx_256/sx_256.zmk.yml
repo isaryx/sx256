@@ -1,0 +1,11 @@
+file_format: "1"
+id: sx_256
+name: Xiao256
+type: shield
+url: https://github.com/isaryx/zmk-config
+requires: [seeed_xiao]
+features:
+  - keys
+siblings:
+  - sx_256_left
+  - sx_256_right

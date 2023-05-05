@@ -1,0 +1,16 @@
+if SHIELD_XIAO_256_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "xiao256"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_XIAO_256_LEFT || SHIELD_XIAO_256_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif

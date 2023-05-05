@@ -1,0 +1,11 @@
+file_format: "1"
+id: xiao_256
+name: Xiao256
+type: shield
+url: https://github.com/vuanhtung/zmk-config
+requires: [seeed_xiao]
+features:
+  - keys
+siblings:
+  - xiao_256_left
+  - xiao_256_right
