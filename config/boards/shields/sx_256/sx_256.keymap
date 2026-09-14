@@ -1,3 +1,8 @@
+/*
+ * sx256 keymap — ported from sp-kb Sofle layout (4 layers).
+ * Matrix is 5×12 (6 per half).
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -24,9 +29,14 @@
 #define PREV    &kp C_PREV
 
 #define T_H     &kp LC(A)
-#define T_WB    &kp LA(LEFT)
-#define T_WF    &kp LA(RIGHT)
+#define T_WB    &kp LA(B)
+#define T_WF    &kp LA(F)
 #define T_E     &kp LC(E)
+
+#define C_C     &kp LC(C)
+#define C_V     &kp LC(V)
+#define C_X     &kp LC(X)
+#define C_Z     &kp LC(Z)
 
 #define L_CMD(x) &kp LG(x)
 
@@ -34,48 +44,51 @@
 #define _____   &none
 
 / {
-  keymap {
-    compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
 
-    base_layer {
-      bindings = <
-        _ ESC       _ N1        _ N2        _ N3        _ N4        _ N5            _ N6        _ N7        _ N8        _ N9        _ N0        _ BSPC
-        _ TAB       _ Q         _ W         _ E         _ R         _ T             _ Y         _ U         _ I         _ O         _ P         _ MINUS
-        _ ESC       _ A         _ S         _ D         _ F         _ G             _ H         _ J         _ K         _ L         _ SEMI      _ SQT
-        _ LSHFT     _ Z         _ X         _ C         _ V         _ B             _ N         _ M         _ COMMA     _ DOT       _ SLASH     _ RSHFT
-        _ LCTRL     _ LALT      _ LEFT      _ RIGHT     &mo FN1     _ LGUI          _ SPACE     &mo FN2     _ DOWN      _ RGUI      _ RALT      _ RCTRL 
-      >;
+        base_layer {
+            display-name = "Surface";
+            bindings = <
+/*  row 0 */  _ ESC       _ N1        _ N2        _ N3        _ N4        _ N5            _ N6        _ N7        _ N8        _ N9        _ N0        _ BSPC
+/*  row 1 */  _ TAB       _ Q         _ W         _ E         _ R         _ T             _ Y         _ U         _ I         _ O         _ P         _ MINUS
+/*  row 2 */  _ TAB       _ A         _ S         _ D         _ F         _ G             _ H         _ J         _ K         _ L         _ SEMI      _ SQT
+/*  row 3 */  _ LSHFT     _ Z         _ X         _ C         _ V         _ B             _ N         _ M         _ COMMA     _ DOT       _ SLASH     _ RSHFT
+/*  thumb */  _ LCTRL     _ LALT      _ LEFT      _ RIGHT     &mo FN1     _ LGUI          _ SPACE     &mo FN2     _ DOWN      _ RGUI      _ RALT      _ RCTRL
+            >;
+        };
+
+        fn1_layer {
+            display-name = "Shallow";
+            bindings = <
+/*  row 0 */  _ GRAVE     _ F1        _ F2        _ F3        _ F4        _ F5            _ F6        _ F7        _ F8        _ F9        _ F10       _ DEL
+/*  row 1 */  _ CAPS      _____       _____       _ UP        L_CMD(R)    _____           _____       _____       _____       _ LBKT      _ RBKT      _ BSLH
+/*  row 2 */  _ CAPS      L_CMD(A)    _ LEFT      _ DOWN      _ RIGHT     _____           _ GRAVE     _ EQUAL     _ MINUS     _ LBRC      _ RBRC      _ PIPE
+/*  row 3 */  &trans      L_CMD(Z)    L_CMD(X)    L_CMD(C)    L_CMD(V)    L_CMD(B)        _ F11       _____       _ UP        _____       _____       &trans
+/*  thumb */  &mo FN3     _____       _____       _____       &trans      _ RETURN        _ RETURN    _ LEFT      _ DOWN      _ RIGHT     _____       _____
+            >;
+        };
+
+        fn2_layer {
+            display-name = "Deep";
+            bindings = <
+/*  row 0 */  _ F1        _ F2        _ F3        _ F4        _ F5        _ F6            _ F7        _ F8        _ F9        _ F10       _ F11       _ F12
+/*  row 1 */  _ CAPS      _ HOME      _ PG_UP     _ PG_DN     _ END       _____           _____       _____       _____       _____       _____       _____
+/*  row 2 */  _ CAPS      T_H         T_WB        T_WF        T_E         _____           _____       _____       _____       _____       _____       _____
+/*  row 3 */  &trans      C_Z         C_X         C_C         C_V         _____           _____       _____       _____       _____       _____       &trans
+/*  thumb */  _____       _____       _____       _____       _____       _____           _____       _____       _____       _____       _____       _____
+            >;
+        };
+
+        fn3_layer {
+            display-name = "Bedrock";
+            bindings = <
+/*  row 0 */  BTCLR       BT(0)       BT(1)       BT(2)       _____       _____           _____       _____       _____       _____       _____       _____
+/*  row 1 */  OUTBLE      _____       _____       _____       _____       _____           _____       _____       _____       _____       _____       _____
+/*  row 2 */  OUTUSB      _____       _____       _____       _____       _____           _____       _____       _____       _____       _____       _____
+/*  row 3 */  _____       _____       _____       _____       _____       _____           _____       _____       _____       _____       _____       _____
+/*  thumb */  _____       _____       &trans      _____       _____       _____           &trans      &trans      _____       _____       _____       _____
+            >;
+        };
     };
-
-    fn1_layer {
-      bindings = <
-        _ GRAVE     _ F1        _ F2        _ F3        _ F4        _ F5            _ F6        _ F7        _ F8        _ F9        _ F10       _ DEL
-        _ CAPS      _ HOME      _ UP        _ END       L_CMD(R)    _ BSLH          _ PIPE      _ DEL       _ BSPC      _ LBKT      _ RBKT      _ BSLH
-        _ CAPS      _ LEFT      _ DOWN      _ RIGHT     L_CMD(F)    _ PIPE          _ GRAVE     _ EQUAL     _ MINUS     _ LBRC      _ RBKT      _ PIPE
-        &trans      L_CMD(Z)    L_CMD(X)    L_CMD(C)    L_CMD(V)    L_CMD(B)        _ F11       MUTE        VOL_DN      VOL_UP      _ UP        &trans
-        _ SPACE     &mo FN3     _ PG_UP     _ PG_DN    &trans      _ RETURN        _ RETURN  &trans        _ UP        _ LEFT      _ DOWN      _ RIGHT 
-      >;
-    };
-
-    fn2_layer {
-      bindings = <
-        _ F1        _ F2        _ F3        _ F4        _ F5        _ F6            _ F7        _ F8        _ F9        _ F10       _ F11       _ F12
-        _ CAPS      _ HOME      _ PG_UP     _ LPAR      _ RPAR      _ BSLH          &trans      &trans      &trans      _ LBKT      _ RBKT      _ BSLH
-        _ CAPS      _ END       _ PG_DN     _ LBKT      _ RBKT      _ EQUAL         _ GRAVE     _ EQUAL     _ MINUS     PREV        PLAY        NEXT
-        &trans      T_H         T_WB        T_WF        T_E         _ GRAVE         _ F11       MUTE        VOL_DN      VOL_UP      _ UP        &trans
-        &trans      &trans      &trans      &trans      &trans      _ RETURN        _ RETURN    &trans      _ UP        _ LEFT      _ DOWN      _ RIGHT 
-      >;
-    };
-
-    fn3_layer {
-      bindings = <
-        BTCLR       BT(0)       BT(1)       BT(2)       BT(3)       BT(4)           _____       _____       _____       _____       _____       RESET
-        OUTBLE      _____       _____       _____       _____       _____           _____       _____       _____       _____       _____       _____
-        OUTUSB      _____       _____       _____       _____       _____           _____       _____       _____       _____       _____       _____
-        _____       _____       _____       _____       _____       _____           _____       _____       _____       _____       _____       _____
-        _____       _____       _____       _____       _____       FLASH           FLASH       _____       _____       _____       _____       _____ 
-      >;
-    };
-
-  };
 };
