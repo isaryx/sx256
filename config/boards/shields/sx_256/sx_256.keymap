@@ -1,5 +1,5 @@
 /*
- * sx256 keymap — ported from sp-kb Sofle layout (4 layers).
+ * SX256 keymap (4 layers).
  * Matrix is 5×12 (6 per half).
  */
 

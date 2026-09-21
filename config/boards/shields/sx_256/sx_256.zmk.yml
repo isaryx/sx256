@@ -2,7 +2,7 @@ file_format: "1"
 id: sx_256
 name: Xiao256
 type: shield
-url: https://github.com/isaryx/zmk-config
+url: https://github.com/isaryx/sx256
 requires: [seeed_xiao]
 features:
   - keys
